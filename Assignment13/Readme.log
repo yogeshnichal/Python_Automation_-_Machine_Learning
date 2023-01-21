@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------------------------------------------
+					Duplicate File Removal
+--------------------------------------------------------------------------------------------------------------------
+
+Description:
+
+	This is a automation script, which accept Directory name from user.
+	It will scan directory and delete all duplicate files from the specified directory.
+	At the time will create log file in that which contains the list of the files deleted.
+	It scheduled for a particular time interval.
+	It will run at scheduled time and send email of deleted files and attach log with accepted email id
+
+Usage:
+	DuplicateFileRemoval.py E:/Data/Demo 50 marvellousinfosystem@gmail.com
+	
+	- DuplicateFileRemoval.py
+		Name of python automation script
+
+
+	- E:/Data/Demo
+		Absolute path of directory which may contains duplicate files
+
+
+	- 50
+		Time interval of script in minutes
+
+
+	- marvellousinfosystem@gmail.com
+		Mail ID of the receiver	
+		
+
+--------------------------------------------------------------------------------------------------------------------
+						Thanks
+--------------------------------------------------------------------------------------------------------------------
+		
+	
+	
+	

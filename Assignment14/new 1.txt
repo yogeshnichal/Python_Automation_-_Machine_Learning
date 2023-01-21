@@ -1,0 +1,52 @@
+import os
+from pandas import read_csv
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import accuracy_score
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
+
+def ChechAccuracy(Data, Target):
+    #	A			C			B			D
+    Data_train, Data_test, Target_train, Target_test = train_test_split(Data, Target, test_size=0.2)
+
+    classifier = KNeighborsClassifier(n_neighbors=3)
+    classifier.fit(Data_train, Target_train)
+    Predictions = classifier.predict(Data_test)
+
+    return accuracy_score(Target_test, Predictions)
+
+def PlayPradict():
+    filename = "PlayPredictor.csv"
+	
+    exists = os.path.exists(filename)
+	
+    if exists:
+        Dataset = pd.read_csv(filename)
+        le = LabelEncoder()
+        test = Dataset.apply(le.fit_transform)
+        data = test.drop(['Play'], axis=1)
+        Data = data.drop(['Unnamed:0'], axis=1)
+        Target = test.Play
+
+        Data_train, Data_test, Target_train, Target_test = train_test_split(Data, Target, test_size=0.5)
+
+        Classifier = KNeighborsClassifier(n_neighbors=7)
+        Classifier.fit(Data, Target)
+        Predictions = Classifier.predict(Data_test)
+
+        for predict in Predictions:
+            if predict == 1:
+                print('Yes')
+            else:
+                print("No")
+        print("Accuracy : ", ChechAccuracy(Data, Target)*100, "%")
+    pass
+	
+
+def main():
+    PlayPradict()
+
+
+if __name__ == "__main__":
+    main()
+

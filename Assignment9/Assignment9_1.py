@@ -1,0 +1,33 @@
+import sys
+import os.path
+
+def main():
+
+	if os.path.exists(sys.argv[1]):
+		print("file exist")
+		exit()
+	else:
+		print("file dose not exist")
+		exit()
+
+
+if __name__ == "__main__":
+	main()
+
+# def ReadData(File):
+# 	if os.path.exists(File):
+# 		print("File is exist")
+# 		exit()
+# 	else:
+# 		print("File dose not exist")
+# 		exit()
+#
+#
+# def main():
+# 	Name = input("Enter the file name you want to read: ")
+#
+# 	ReadData(Name)
+#
+#
+# if __name__ == "__main__":
+# 	main()

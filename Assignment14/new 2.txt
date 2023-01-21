@@ -1,0 +1,52 @@
+import os
+from pandas import read_csv
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import accuracy_score
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
+
+def CheckAccuracy(data, target):
+    #	A			C			B			D
+    data_train, data_test, target_train, target_test = train_test_split(data, target, test_size=0.2)
+
+    classifier = KNeighborsClassifier(n_neighbors=3)
+    classifier.fit(data_train, target_train)				# AB
+    prediction = classifier.predict(data_test)
+
+    return accuracy_score(target_test, prediction)
+
+def PlayPredictor():
+    filename = "PlayPredictor.csv"
+
+    exists = os.path.exists(filename)
+
+    if exists:
+        dataset = read_csv(filename)
+        le = LabelEncoder()
+        test = dataset.apply(le.fit_transform)
+        data = test.drop(['Play'], axis=1)
+        Data = data.drop(['Unnamed: 0'], axis=1)
+        target = test.Play
+
+        data_train, data_test, target_train, target_test = train_test_split(Data, target, test_size=0.5)
+
+        classifier = KNeighborsClassifier(n_neighbors=7)
+        classifier.fit(Data, target)						# AB
+        prediction = classifier.predict(data_test)			# C
+
+        for predict in prediction:
+            if predict == 1:
+                print("Yes")
+            else:
+                print("No")
+
+        print("Accuracy:", CheckAccuracy(Data, target)*100, "%")
+    pass
+
+
+def main():
+    PlayPredictor()
+
+
+if __name__ == "__main__":
+    main()
